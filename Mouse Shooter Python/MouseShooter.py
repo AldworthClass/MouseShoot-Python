@@ -16,7 +16,7 @@ HEIGHT = 600
 
 def draw_crosshair(screen, pos):
     pygame.draw.circle(screen, BLACK, pos, 11, 1)
-    pygame.draw.circle(screen, BLACK, pos, 2)
+    pygame.draw.circle(screen, BLACK, pos, 6,1)
     pygame.draw.line(screen, RED, [pos[0], pos[1] - 10], [pos[0], pos[1] + 10])
     pygame.draw.line(screen, RED, [pos[0] - 10, pos[1]], [pos[0] + 10, pos[1]])
 
@@ -55,7 +55,7 @@ class Projectile():
 
 
         distance = math.sqrt(self.run*self.run + self.rise*self.rise)
-        #Normalizes speed by dividing out distance from rise and run
+        #Normalizes speed by dividing out distance from rise and run and uses multiplyer to set speed
         self.x_speed = self.run / distance * 2
         self.y_speed = self.rise / distance * 2
 
@@ -92,26 +92,32 @@ while not done:
             # Figure out if it was an arrow key. If so
             # adjust speed.
             if event.key == pygame.K_LEFT:
-                hero_ship.x_vel += -3
+                hero_ship.x_vel += -2
             elif event.key == pygame.K_RIGHT:
-                hero_ship.x_vel += 3
+                hero_ship.x_vel += 2
             elif event.key == pygame.K_UP:
-                hero_ship.y_vel += -3
+                hero_ship.y_vel += -2
             elif event.key == pygame.K_DOWN:
-                hero_ship.y_vel += 3
-            elif event.key == pygame.K_SPACE:
-                projectiles.append(Projectile(hero_ship))
+                hero_ship.y_vel += 2
+
+
         elif event.type == pygame.KEYUP:
             # Figure out if it was an arrow key. If so
             # adjust speed.
             if event.key == pygame.K_LEFT:
-                hero_ship.x_vel -= -3
+                hero_ship.x_vel -= -2
             elif event.key == pygame.K_RIGHT:
-                hero_ship.x_vel -= 3
+                hero_ship.x_vel -= 2
             elif event.key == pygame.K_UP:
-                hero_ship.y_vel -= -3
+                hero_ship.y_vel -= -2
             elif event.key == pygame.K_DOWN:
-                hero_ship.y_vel -= 3
+                hero_ship.y_vel -= 2
+
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            projectiles.append(Projectile(hero_ship))
+
+
+
     # --- Game logic should go here
     hero_ship.update()
     for projectile in projectiles:
