@@ -1,8 +1,6 @@
 import pygame
 import math
 
-
-
 # Define some colors, you may want to add more
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -14,6 +12,7 @@ BLUE = (0, 0, 255)
 WIDTH = 800
 HEIGHT = 600
 
+
 def draw_crosshair(screen, pos):
     pygame.draw.circle(screen, BLACK, pos, 11, 1)
     pygame.draw.circle(screen, BLACK, pos, 6,1)
@@ -21,12 +20,11 @@ def draw_crosshair(screen, pos):
     pygame.draw.line(screen, RED, [pos[0] - 10, pos[1]], [pos[0] + 10, pos[1]])
 
 
-
 #Class for ship
 class Ship():
     def __init__(self):
         self.color = BLUE
-        self.ship_rect = pygame.Rect(WIDTH/2-10, HEIGHT/2-10, 20, 20)
+        self.ship_rect = pygame.Rect(WIDTH/2-10, HEIGHT/2-10, 20, 20)   #Starts ship in middle of window
         self.x_vel = 0
         self.y_vel = 0
     #Moves Ship by speed
